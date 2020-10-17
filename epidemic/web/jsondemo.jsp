@@ -28,8 +28,12 @@
         };
 
           $("button").click(function () {
-               alert(json2)
-              console.info(json2)
+              for(var key in person){
+                  alert("key:"+key+"----"+person[key]+"/n")
+              }
+              //alert(person.name);
+              //  alert(json2)
+              // console.info(json2)
           })
     })
 </script>

@@ -14,6 +14,7 @@
 <body>
 用户名：<input type="text" id="userName"/><span id="showMsg" style="color:red;"></span><br/>
 <input type="button" value="基于jQuery" id="btn"/>
+<div id="showData"></div>
 </body>
 </html>
 
@@ -21,8 +22,17 @@
     $(function () {
         $("#btn").click(function () {
             var account = $("#userName").val();
-            $.get("ajax/ajaxDemo",{"userName":account},function (data) {
-                 $("#showMsg").html(data.msg);
+            // $.get("ajax/ajaxDemo",{"userName":account},function (data) {
+                $.post("ajax/ajaxDemo",{"userName":account},function (data) {
+                 // $("#showMsg").html(data.msg);
+                 //    alert(data);
+                 var showData=$("#showData");
+                 $.each(data,function (index,userInfo) {
+                     var str=userInfo.userName+","+userInfo.userPassword;
+                     showData.append(str+"<br/>");
+                     // alert(name);
+                 });
+                 console.info(data)
             },"json");
         });
     });
