@@ -1,66 +1,66 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PC
-  Date: 2020/10/13
-  Time: 16:40
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-<!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>疫情数据输入页面</title>
-<%--    <jsp:include page="${pageContext.request.contextPath}/template/bootstrap_common.jsp"></jsp:include>--%>
-    <!-- Bootstrap -->
-    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/datepicker/bootstrap-datepicker3.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <title>疫情数据录入</title>
+    <jsp:include page="../template/bootstrap_common.jsp"></jsp:include>
+    <link rel="stylesheet" href="../bootstrap/datepicker/bootstrap-datepicker3.css" type="text/css"/>
 </head>
 <body>
 <div class="container">
-    <div class="row" style="background:#026CC4;margin-bottom: 3px ">
-        <div class="col-md-6 logo">疫情数据发布系统</div>
-    </div>
+    <jsp:include page="../template/top.jsp"/>
     <div class="row">
-    <div class="col-md-3">
-        <div class="panel-group" id="menu">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#menu" href="#div1">数据管理 </a>
-                </h4>
-                </div>
-                <div id="div1" class="panel-collapse in">
-                    <div class="list-group"><a href="${pageContext.request.contextPath}/admin/data_input.jsp" class="list-group-item">数据录入</a>
-                        <a href="#" class="list-group-item">数据查询</a>
-                        <a href="#" class="list-group-item">图表</a>
+        <div class="col-md-3">
+            <jsp:include page="../template/menu.jsp"/>
+        </div>
+        <div class="col-md-9">
+            <ul class="breadcrumb">
+                <li><a href="${pageContext.request.contextPath}/main.jsp">主页</a></li>
+                <li>数据录入</li>
+            </ul>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group date" id="datepicker" data-date-format="yyyy-mm-dd">
+                        <div class="input-group-addon">数据日期：</div>
+                        <input class="form-control" size="16" type="text" value="" readonly id="dataDate">
+                        <div class="input-group-addon"><span class="add-on glyphicon glyphicon-calendar"></span></div>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary" id="btnSubmit">提交 <span class="glyphicon glyphicon-log-in"></span></button>
                 </div>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#menu" href="#div2">系统管理</a>
-                </h4>
-                </div>
-                <div id="div2" class="panel-collapse collapse">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">录入用户</a>
-                        <a href="#" class="list-group-item">查询用户</a>
-                    </div>
-                </div>
+            <br/>
+            <div class="row">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th>省份</th>
+                        <th>确诊人数</th>
+                        <th>疑似人数</th>
+                        <th>隔离人数</th>
+                        <th>治愈人数</th>
+                        <th>死亡人数</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body1">
+                    <tr>
+                        <td>湖北</td>
+                        <td><input type="text" name="affirmed" size="4" maxlength="4" class="form-control"/></td>
+                        <td><input type="text" name="suspected" size="4" maxlength="4" class="form-control"/></td>
+                        <td><input type="text" name="isolated" size="4" maxlength="4" class="form-control"/></td>
+                        <td><input type="text" name="cured" size="4" maxlength="4" class="form-control"/></td>
+                        <td><input type="text" name="dead" size="4" maxlength="4" class="form-control"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div id="msg"></div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -73,3 +73,15 @@
         src="${pageContext.request.contextPath}/bootstrap/datepicker/bootstrap-datepicker.zh-CN.min.js"></script>
 </body>
 </html>
+<script>
+    $(function () {
+        var datepicker=$("#datepicker");
+        var current=new Date();
+        var date1=new Date();
+        date1.setDate(current.getDate()-7);
+        datepicker.datepicker({language:'zh-CN',autoclose: 'true'});
+        datepicker.datepicker("setDate",current);
+        datepicker.datepicker("setStartDate",date1);
+        datepicker.datepicker("setEndDate",current);
+    })
+</script>
