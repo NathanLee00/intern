@@ -1,9 +1,14 @@
 package com.yueqian.epidemic.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -16,12 +21,21 @@ public class AjaxController {
     @ResponseBody
     public String ajaxDemo(String userName){
         logger.debug("userName:"+userName);
+        Map<String,Object> map=new HashMap<String,Object>();
         String msg="";
         if(userName.equals("admin")){
-            msg="此用户名已经被占用了，请更换一下";
+            map.put("msg","此用户名已经被占用了，请更换一下");
         }else{
-            msg="此用户名可以使用！";
+            map.put("msg","此用户名可以使用！");
         }
-        return msg;
+        ObjectMapper mapper=new ObjectMapper();
+        String jsonstr=null;
+        try{
+            jsonstr=mapper.writeValueAsString(map);
+            logger.debug("json内容:"+jsonstr);
+        }catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
+        return jsonstr;
     }
 }
