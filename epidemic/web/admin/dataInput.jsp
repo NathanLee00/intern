@@ -85,12 +85,14 @@
         datepicker.datepicker("setStartDate",date1);
         datepicker.datepicker("setEndDate",current);
 
-        datepicker.datepicker().on("changeDate",loadProvincesData)
+        datepicker.datepicker().on("changeDate",loadProvincesData);
+
+        loadProvincesData();
     })
 
     function loadProvincesData() {
         var date=$("#dataDate").val();
-        $.get("${pageContext.request.contextPath}/province/ajax/noDataList",{date:date},function (resp) {
+        $.get("${pageContext.request.contextPath}/province/ajax/noDataList",{"date":date},function (resp) {
             console.info(resp);
         },"json");
     }
