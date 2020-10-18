@@ -94,6 +94,48 @@
         var date=$("#dataDate").val();
         $.get("${pageContext.request.contextPath}/province/ajax/noDataList",{"date":date},function (resp) {
             console.info(resp);
+            if(resp.code<0){
+                alert(resp.msg);
+            }else {
+                fillProvinceToTable(resp.data);
+            }
         },"json");
+    }
+
+    function fillProvinceToTable(array) {
+        var body1=$("#body1");
+        body1.empty();
+
+        if(array!=null&&array.length>0){
+            privinces=array;
+
+            for(var i=0;i<array.length;i++){
+                var tr=$("<tr>");
+                var td=$("<td>");
+                td.text=array[i].provinceName;
+                tr.append(td);
+
+                td=$("<td>");
+                td.html('<input type="text" name="affirmed" size="4" maxlength="4" class="form-control"/>');
+                tr.append(td);
+
+                td=$("<td>");
+                td.html('<input type="text" name="suspected" size="4" maxlength="4" class="form-control"/>');
+                tr.append(td);
+
+                td=$("<td>");
+                td.html('<input type="text" name="isolated" size="4" maxlength="4" class="form-control"/>');
+                tr.append(td);
+
+                td=$("<td>");
+                td.html('<input type="text" name="cured" size="4" maxlength="4" class="form-control"/>');
+                tr.append(td);
+
+                td=$("<td>");
+                td.html('<input type="text" name="dead" size="4" maxlength="4" class="form-control"/>');
+                tr.append(td);
+                body1.append(tr);
+            }
+        }
     }
 </script>
