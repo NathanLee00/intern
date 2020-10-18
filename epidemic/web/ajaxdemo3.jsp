@@ -22,18 +22,21 @@
     $(function () {
         $("#btn").click(function () {
             var account = $("#userName").val();
-            // $.get("ajax/ajaxDemo",{"userName":account},function (data) {
-                $.post("ajax/ajaxDemo",{"userName":account},function (data) {
-                 // $("#showMsg").html(data.msg);
-                 //    alert(data);
-                 var showData=$("#showData");
-                 $.each(data,function (index,userInfo) {
-                     var str=userInfo.userName+","+userInfo.userPassword;
-                     showData.append(str+"<br/>");
-                     // alert(name);
-                 });
-                 console.info(data)
-            },"json");
+            // // $.get("ajax/ajaxDemo",{"userName":account},function (data) {
+            //     $.post("ajax/ajaxDemo",{"userName":account},function (data) {
+            //      // $("#showMsg").html(data.msg);
+            //      //    alert(data);
+            //      var showData=$("#showData");
+            //      $.each(data,function (index,userInfo) {
+            //          var str=userInfo.userName+","+userInfo.userPassword;
+            //          showData.append(str+"<br/>");
+            //          // alert(name);
+            //      });
+            //      console.info(data)
+            // },"json");
+            $("#showData").load("ajax/ajaxDemo",{"userName":account},function (data) {
+                 alert(data);
+            })
         });
     });
 
