@@ -34,7 +34,7 @@
             </div>
             <br/>
             <div class="row">
-                <table class="table table-striped table-hover table-bordered">
+                <table class="table table-striped table-hover table-bordered table-condensed">
                     <thead>
                     <tr>
                         <th>省份</th>
@@ -74,6 +74,7 @@
 </body>
 </html>
 <script>
+    var privinces;
     $(function () {
         var datepicker=$("#datepicker");
         var current=new Date();

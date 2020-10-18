@@ -8,6 +8,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="lib" />
+          <element id="file-copy" path="$PROJECT_DIR$/epidemic/web/WEB-INF/lib/jstl-1.2.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="epidemic/web/Web" />
