@@ -112,27 +112,27 @@
             for(var i=0;i<array.length;i++){
                 var tr=$("<tr>");
                 var td=$("<td>");
-                td.text=array[i].provinceName;
+                td.text(array[i].provinceName);
                 tr.append(td);
 
                 td=$("<td>");
-                td.html('<input type="text" name="affirmed" size="4" maxlength="4" class="form-control"/>');
+                td.html('<input type="text" name="affirmed" size="4" maxlength="4" class="form-control" value="0"/>');
                 tr.append(td);
 
                 td=$("<td>");
-                td.html('<input type="text" name="suspected" size="4" maxlength="4" class="form-control"/>');
+                td.html('<input type="text" name="suspected" size="4" maxlength="4" class="form-control" value="0"/>');
                 tr.append(td);
 
                 td=$("<td>");
-                td.html('<input type="text" name="isolated" size="4" maxlength="4" class="form-control"/>');
+                td.html('<input type="text" name="isolated" size="4" maxlength="4" class="form-control " value="0"/>');
                 tr.append(td);
 
                 td=$("<td>");
-                td.html('<input type="text" name="cured" size="4" maxlength="4" class="form-control"/>');
+                td.html('<input type="text" name="cured" size="4" maxlength="4" class="form-control" value="0"/>');
                 tr.append(td);
 
                 td=$("<td>");
-                td.html('<input type="text" name="dead" size="4" maxlength="4" class="form-control"/>');
+                td.html('<input type="text" name="dead" size="4" maxlength="4" class="form-control" value="0"/>');
                 tr.append(td);
                 body1.append(tr);
             }
