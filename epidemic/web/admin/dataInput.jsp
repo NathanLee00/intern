@@ -74,7 +74,7 @@
 </body>
 </html>
 <script>
-    var privinces;
+    var provinces;
     $(function () {
         var datepicker=$("#datepicker");
         var current=new Date();
@@ -131,7 +131,26 @@
         })
 
         if(valid){
+            var array=[];
+            for(var i=0;i<provinces.length;i++){
+                var obj={};
+                obj.provinceId=provinces[i].provinceId;
+                obj.affirmed=affirmed[i].value;
+                obj.suspected=suspected[i].value;
+                obj.isolated=isolated[i].value;
+                obj.cured=cured[i].value;
+                obj.dead=dead[i].value;
+                array.push(obj);
+            }
+            var date=$("#dataDate").val();
+            var data={};
+            data.date=date;
+            data.arrayData=array;
+            $.ajax({
+                url:"",
 
+               date:{date:data}
+            });
         }else {
             alert("请检查你录入的数据");
         }
@@ -154,7 +173,7 @@
         body1.empty();
 
         if(array!=null&&array.length>0){
-            privinces=array;
+            provinces=array;
 
             for(var i=0;i<array.length;i++){
                 var tr=$("<tr>");
