@@ -57,9 +57,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="row">
-                <div id="msg"></div>
-            </div>
+           <div class="row">
+               <div id="msg"></div>
+           </div>
         </div>
     </div>
 </div>
@@ -88,7 +88,26 @@
         datepicker.datepicker().on("changeDate",loadProvincesData);
 
         loadProvincesData();
+
+        $("#btnSubmit").click(checkAndSubmitData);
     })
+
+    function checkAndSubmitData() {
+       var valid=true;
+       var affirmed=$("input[name=affirmed]");
+
+       $.each(affirmed,function (index,element) {
+           if(isNaN(Number(element.value))){
+               valid=false;
+           }
+       })
+
+        if(valid){
+
+        }else {
+            alert("请检查你录入的数据");
+        }
+    }
 
     function loadProvincesData() {
         var date=$("#dataDate").val();
@@ -136,6 +155,8 @@
                 tr.append(td);
                 body1.append(tr);
             }
+        }else{
+            $("#msg").html("当日所有省份数据已经录入");
         }
     }
 </script>
