@@ -95,12 +95,40 @@
     function checkAndSubmitData() {
        var valid=true;
        var affirmed=$("input[name=affirmed]");
-
+       var suspected=$("input[name=suspected]");
+       var isolated=$("input[name=isolated]");
+       var cured=$("input[name=cured]");
+       var dead=$("input[name=dead]");
        $.each(affirmed,function (index,element) {
-           if(isNaN(Number(element.value))){
-               valid=false;
-           }
-       })
+            if(isNaN(Number(element.value))){
+                valid=false;
+            }
+        })
+
+        $.each(suspected,function (index,element) {
+            if(isNaN(Number(element.value))){
+                valid=false;
+            }
+        })
+
+        $.each(isolated,function (index,element) {
+            if(isNaN(Number(element.value))){
+                valid=false;
+            }
+        })
+
+
+        $.each(cured,function (index,element) {
+            if(isNaN(Number(element.value))){
+                valid=false;
+            }
+        })
+
+        $.each(dead,function (index,element) {
+            if(isNaN(Number(element.value))){
+                valid=false;
+            }
+        })
 
         if(valid){
 
