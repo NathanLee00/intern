@@ -84,5 +84,14 @@
         datepicker.datepicker("setDate",current);
         datepicker.datepicker("setStartDate",date1);
         datepicker.datepicker("setEndDate",current);
+
+        datepicker.datepicker().on("changeDate",loadProvincesData)
     })
+
+    function loadProvincesData() {
+        var date=$("#dataDate").val();
+        $.get("${pageContext.request.contextPath}/province/ajax/noDataList",{date:date},function (resp) {
+            console.info(resp);
+        },"json");
+    }
 </script>

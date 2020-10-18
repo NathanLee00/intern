@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse"
-                                                              data-parent="#menu"
-                                                              href="#div2">系统管理</a>
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#menu" href="#div2">系统管理</a>
         </h4>
         </div>
         <div id="div2" class="panel-collapse collapse">
