@@ -8,7 +8,6 @@ import com.yueqian.epidemic.service.EpidemicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class EpidemicServiceImpl implements EpidemicService {

@@ -46,7 +46,7 @@ public class EpidemicController {
                     info.setDataDay(day);
                     info.setInputDate(new Date());
                     info.setUserId(user.getUserId());
-                    epidemicService.SaveInfo(info);
+                    epidemicService.SaveInfo(info);  //保存
                 }
             }
             List<ProvinceInfo> list= provinceService.getProvinceNoDate(data.getDate());

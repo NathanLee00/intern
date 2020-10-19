@@ -3,12 +3,9 @@ package com.yueqian.epidemic.beans;
 import java.util.Date;
 
 public class EpidemicInfo {
-    private Integer serialId;
+    private  Integer serialId;
     private Integer provinceId;
-    private int dataYear;
-    private int dataMonth;
-    private int dataDay;
-    private Integer affirmed,suspected,cured,isolated,dead,userId;
+    private Integer dataYear,dataMonth,dataDay,affirmed,suspected,isolated,dead,cured,userId;
     private Date inputDate;
 
     public Integer getSerialId() {
@@ -27,27 +24,27 @@ public class EpidemicInfo {
         this.provinceId = provinceId;
     }
 
-    public int getDataYear() {
+    public Integer getDataYear() {
         return dataYear;
     }
 
-    public void setDataYear(int dataYear) {
+    public void setDataYear(Integer dataYear) {
         this.dataYear = dataYear;
     }
 
-    public int getDataMonth() {
+    public Integer getDataMonth() {
         return dataMonth;
     }
 
-    public void setDataMonth(int dataMonth) {
+    public void setDataMonth(Integer dataMonth) {
         this.dataMonth = dataMonth;
     }
 
-    public int getDataDay() {
+    public Integer getDataDay() {
         return dataDay;
     }
 
-    public void setDataDay(int dataDay) {
+    public void setDataDay(Integer dataDay) {
         this.dataDay = dataDay;
     }
 
@@ -67,14 +64,6 @@ public class EpidemicInfo {
         this.suspected = suspected;
     }
 
-    public Integer getCured() {
-        return cured;
-    }
-
-    public void setCured(Integer cured) {
-        this.cured = cured;
-    }
-
     public Integer getIsolated() {
         return isolated;
     }
@@ -89,6 +78,14 @@ public class EpidemicInfo {
 
     public void setDead(Integer dead) {
         this.dead = dead;
+    }
+
+    public Integer getCured() {
+        return cured;
+    }
+
+    public void setCured(Integer cured) {
+        this.cured = cured;
     }
 
     public Integer getUserId() {

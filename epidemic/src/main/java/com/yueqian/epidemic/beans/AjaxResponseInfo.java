@@ -3,15 +3,15 @@ package com.yueqian.epidemic.beans;
 import java.util.List;
 
 public class AjaxResponseInfo<T> {
-    private int code;
-    private String msg;
-    private T data;
+    private Integer code;
+    private String msg;  //错误信息
+    private T data;  //要封闭的数据
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

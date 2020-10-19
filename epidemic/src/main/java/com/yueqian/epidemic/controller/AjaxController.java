@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yueqian.epidemic.beans.UserInfo;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,12 +16,12 @@ import java.util.Map;
 
 
 @Controller
-@RequestMapping(value = "/ajax",produces ="text/html;charset=utf-8")
+@RequestMapping(value = "/ajax")
 public class AjaxController {
 
     private Logger logger= Logger.getLogger(AjaxController.class);
 
-    @RequestMapping("/ajaxDemo")
+    @PostMapping(value = "/ajaxDemo", produces = "text/html;charset=utf-8")
     @ResponseBody
     public String ajaxDemo(String userName) throws JsonProcessingException {
         logger.debug("userName:"+userName);
@@ -55,6 +56,7 @@ public class AjaxController {
         userInfo3.setUserId(3);
         userInfo3.setUserName("小明");
         userInfo3.setUserPassword("45547");
+
         list.add(userInfo1);
         list.add(userInfo2);
         list.add(userInfo3);
