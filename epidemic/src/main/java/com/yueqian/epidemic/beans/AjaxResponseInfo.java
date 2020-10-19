@@ -3,15 +3,15 @@ package com.yueqian.epidemic.beans;
 import java.util.List;
 
 public class AjaxResponseInfo<T> {
-    private Integer code;
+    private int code;
     private String msg;
     private T data;
 
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

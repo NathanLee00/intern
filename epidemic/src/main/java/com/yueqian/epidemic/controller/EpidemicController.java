@@ -6,10 +6,7 @@ import com.yueqian.epidemic.service.ProvinceService;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -25,7 +22,7 @@ public class EpidemicController {
     @Autowired
     private ProvinceService provinceService;
 
-    @PostMapping("/ajax/input")
+    @RequestMapping("/ajax/input")
     @ResponseBody
     public AjaxResponseInfo<List<ProvinceInfo>> epidemicDataInput(@RequestBody DailyEpidemicInfo data, HttpSession session){
         UserInfo user=(UserInfo) session.getAttribute("loginedUser");

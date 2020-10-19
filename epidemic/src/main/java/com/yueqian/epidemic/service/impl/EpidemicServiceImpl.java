@@ -13,9 +13,9 @@ import java.util.List;
 @Service
 public class EpidemicServiceImpl implements EpidemicService {
 
-
     @Autowired
     private EpidemicMapper epidemicMapper;
+
     @Override
     public int SaveInfo(EpidemicInfo epidemicInfo) {
         epidemicMapper.epidemicDataInput(epidemicInfo);
