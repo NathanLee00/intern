@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/user")
@@ -18,7 +20,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String login(UserInfo userInfo, Model model){
+    public String login(UserInfo userInfo, Model model, HttpSession session){
         logger.debug("login()方法被执行了,userAccount:"+userInfo.getUserAccount()+",userPassword:"+userInfo.getUserPassword());
         //根据客户端提交过来的账号信息得到用户信息对象
         UserInfo user= userService.loginByAccount(userInfo.getUserAccount());
@@ -29,7 +31,8 @@ public class UserController {
         }
         if(user.getUserPassword().equals(userInfo.getUserPassword())){
             //说明账号和密码都是正确的，登录成功！ //如果账号和密码都正确了，就跳转到main.jsp页面
-            return "main";
+            session.setAttribute("loginedUser",user);
+            return "/admin/dataInput";
         }
 
         //判断密码是否正确，如果不正确就应该跳转到登录页面，并且显示出错误提示信息，密码不正确

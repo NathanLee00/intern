@@ -146,10 +146,20 @@
             var data={};
             data.date=date;
             data.arrayData=array;
+            console.info(data);
             $.ajax({
-                url:"",
-
-               date:{date:data}
+                url:"${pageContext.request.contextPath}/epidemicDate/ajax/input",
+                contentType:"application/json",
+               type:"post",
+               data:JSON.stringify(data),
+               dataType:"json",
+               success:function (resp) {
+                    if(resp.code<0){
+                        alert(resp.msg);
+                    }else {
+                        fillProvinceToTable(resp.data);
+                    }
+               }
             });
         }else {
             alert("请检查你录入的数据");
@@ -157,6 +167,7 @@
     }
 
     function loadProvincesData() {
+        $("#msg").html("");
         var date=$("#dataDate").val();
         $.get("${pageContext.request.contextPath}/province/ajax/noDataList",{"date":date},function (resp) {
             console.info(resp);
