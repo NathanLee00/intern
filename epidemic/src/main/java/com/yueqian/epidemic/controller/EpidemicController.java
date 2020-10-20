@@ -56,4 +56,18 @@ public class EpidemicController {
 
         return responseInfo;
     }
+
+    @GetMapping(value = "/ajax/getLastData")
+    @ResponseBody
+    public AjaxResponseInfo getLastData(){
+        AjaxResponseInfo responseInfo=new AjaxResponseInfo();
+        List<EpidemicDetailInfo> list = epidemicService.findLastData();
+        if(list.size()==0){
+            responseInfo.setCode(-1);
+            responseInfo.setMsg("没有数据");
+        }else {
+            responseInfo.setData(list);
+        }
+        return responseInfo;
+    }
 }
