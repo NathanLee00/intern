@@ -9,9 +9,13 @@
 
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+
 </head>
 <body>
 <div id="container">
+    <div class="row" style="height: 500px;background-color: #fff; overflow: auto; margin-bottom: 5px; margin-top: 5px;">
+
+    </div>
     <div class="row" style="height: 500px;background-color: #fff; overflow: auto; margin-bottom: 5px; margin-top: 5px;">
         <div class="col-md-12" >
             <div class="col-md-12">
@@ -33,11 +37,10 @@
             </div>
         </div>
     </div>
-    <div class="row"style="height: 500px;background-color:#2b542c ">
+    <div class="row" style="height: 500px;background-color:#fff;border: solid 1px gray;">
+        <div class="col-md-12" id="myEcharts" style="height: 500px;">
 
-    </div>
-    <div class="row" style="height: 500px;background-color:#333333">
-
+        </div>
     </div>
     <div class="row">
         <a href="login.jsp">登录</a>
@@ -53,6 +56,9 @@
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
 
+<script src="${pageContext.request.contextPath}/Echarts/echarts.js"></script>
+
+
 <script>
     $(function () {
 
@@ -65,6 +71,30 @@
             }
          },"json");
 
+        var myChart = echarts.init($("#myEcharts").get(0));
+        var option = {
+            title: {
+                text: '当日疫情数据'
+            },
+            // 提示框
+            tooltip: {},
+            // 图例，单击后可隐藏对应的系列
+            legend: {
+                data:['2020-10-20']
+            },
+            // X 轴上的类目名称数组
+             xAxis: {
+                data: ["湖北","广东","江西","广西","湖南","山东"]
+             },
+            // Y 轴
+             yAxis: {},     //series值是一个数组。
+            series: [{
+                name: '2020-10-20',
+                type: 'bar',   // 和xAxis.data定义的类目对应的数值
+                  data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+       myChart.setOption(option);
     });
 
     function fillDataToTable(epidemices) {
