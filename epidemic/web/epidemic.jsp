@@ -64,6 +64,87 @@
 <script>
     $(function () {
 
+        var myMap;  //中国地图
+        $.get("${pageContext.request.contextPath}/epidemicDate/ajax/getLastData",{},function (resp) {
+            if(resp.code<0){
+                alert(resp.msg);
+            }else{
+                console.info(resp.data);
+                fillDataToTable(resp.data);
+                fillChartsData(resp.data);
+                fillToMap(resp.data);
+
+            }
+        },"json");
+
+
+        //加载中国地图
+        var myMap = echarts.init($("#myMap").get(0));
+        //获取地图json数据，显示中国地图china
+        $.getJSON("${pageContext.request.contextPath}/Echarts/china.json", {}, function (chinaJson) {
+            echarts.registerMap("china", chinaJson);
+            var option = {
+                title: {
+                    text: "2020-10-20 全国疫情分布图"
+                },
+                legend: {
+                    data: ["累计确诊人数"]
+                },
+                tooltip: {},
+                visualMap: {
+                    type: 'piecewise',
+                    min: 0,
+                    max: 10000,
+                    splitList:
+                        [{
+                            start: 1000,
+                            end: 10000
+                        }, {
+                            start: 500,
+                            end: 1000
+                        }, {
+                            start: 100,
+                            end: 500
+                        }, {
+                            start: 0,
+                            end: 100
+                        }],
+                    textStyle:
+                        {
+                            color: 'orange'
+                        }
+                },
+                series: [
+                    {
+                        name: '累计确诊人数',
+                        type: 'map',
+                        mapType: 'china',
+                        data: []
+                    }
+                ]
+            };
+            myMap.setOption(option);
+        }, "json");
+        //将数据填充到地图中
+        function fillToMap(epidemics) {
+            var data = [];
+            $.each(epidemics, function (index, epidemic) {
+                var obj = {};
+                obj.name = epidemic.provinceName;
+                obj.value = epidemic.affirmedTotal;
+                data.push(obj);
+            });
+            myMap.setOption({
+                series: [
+                    {
+                        name: '累计确诊人数',
+                        type: 'map',
+                        mapType: 'china',
+                        data: data
+                    }
+                ]
+            });
+        };
          $.get("${pageContext.request.contextPath}/epidemicDate/ajax/getLastData",{},function (resp) {
             if(resp.code<0){
                 alert(resp.msg);
@@ -97,42 +178,7 @@
                 name: "确诊人数",
                 type: "map",
                 mapType: "china",
-                data: [
-                    {name: '北京', value: 120},
-                    {name: '天津', value: 34},
-                    {name: '上海', value: 206},
-                    {name: '重庆', value: 210},
-                    {name: '河北', value: 27},
-                    {name: '河南', value: 2322},
-                    {name: '云南', value: 7},
-                    {name: '辽宁', value: 9},
-                    {name: '黑龙江', value: 308},
-                    {name: '湖南', value: 174},
-                    {name: '安徽', value: 40},
-                    {name: '山东', value: 26},
-                    {name: '新疆', value: 2},
-                    {name: '江苏', value: 54},
-                    {name: '浙江', value: 943},
-                    {name: '江西', value: 11},
-                    {name: '湖北', value: 8421},
-                    {name: '广西', value: 5},
-                    {name: '甘肃', value: 2},
-                    {name: '山西', value: 4},
-                    {name: '内蒙古', value: 2},
-                    {name: '陕西', value: 133},
-                    {name: '吉林', value: 41},
-                    {name: '福建', value: 21},
-                    {name: '贵州', value: 7},
-                    {name: '广东', value: 122},
-                    {name: '青海', value: 3},
-                    {name: '西藏', value: 0},
-                    {name: '四川', value: 48},
-                    {name: '宁夏', value: 2},
-                    {name: '海南', value: 0},
-                    {name: '台湾', value: 13},
-                    {name: '香港', value: 67},
-                    {name: '澳门', value: 3}
-                    ]
+                data: []
             }] };
         myMap.setOption(option);
 
