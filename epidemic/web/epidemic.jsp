@@ -68,8 +68,27 @@
             }else{
                 console.info(resp.data);
                 fillDataToTable(resp.data);
+                fillChartsData(resp.data);
             }
          },"json");
+
+         function fillChartsData(data) {
+             var ProvinceArray=[];
+             var affirmedData=[];
+             $.each(data,function (index,cdata) {
+                 ProvinceArray.push(cdata.provinceName);
+                 affirmedData.push(cdata.affirmedTotal)
+             })
+             myChart.setOption({
+                 xAxis: {
+                     data: ProvinceArray
+                 },
+                 series: [{
+                     name: '确诊人数',
+                     data: affirmedData
+                 }]
+             });
+         }
 
         var myChart = echarts.init($("#myEcharts").get(0));
         var option = {
@@ -80,18 +99,19 @@
             tooltip: {},
             // 图例，单击后可隐藏对应的系列
             legend: {
-                data:['2020-10-20']
+                data:['确诊人数']
             },
             // X 轴上的类目名称数组
              xAxis: {
-                data: ["湖北","广东","江西","广西","湖南","山东"]
+                data: []
              },
             // Y 轴
              yAxis: {},     //series值是一个数组。
             series: [{
-                name: '2020-10-20',
-                type: 'bar',   // 和xAxis.data定义的类目对应的数值
-                  data: [5, 20, 36, 10, 10, 20]
+                name: '',
+                type: 'bar',
+                // 和xAxis.data定义的类目对应的数值
+                  data: []
             }]
         };
        myChart.setOption(option);
