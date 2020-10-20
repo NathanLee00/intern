@@ -32,5 +32,5 @@ public interface EpidemicMapper {
             "  GROUP BY e.province_id,p.province_name " +
             ") temp on temp.province_id=e1.province_id " +
             "where data_year=#{year} and data_month=#{month} and data_day=#{day}")
-    List<EpidemicDetailInfo> FindLastData(Map<String, Object> map);
+    List<EpidemicDetailInfo> FindLastData(Map<String, Integer> map);
 }

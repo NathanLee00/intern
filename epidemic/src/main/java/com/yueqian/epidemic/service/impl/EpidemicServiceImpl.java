@@ -31,7 +31,7 @@ public class EpidemicServiceImpl implements EpidemicService {
         year=calendar.get(Calendar.YEAR);
         month=(calendar.get(Calendar.MARCH)+1);
         day=calendar.get(Calendar.DATE);
-        Map<String,Object> condition=new HashMap<>();
+        Map<String,Integer> condition=new HashMap<>();
         condition.put("year",year);
         condition.put("month",month);
         condition.put("day",day);

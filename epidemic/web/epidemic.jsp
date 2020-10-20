@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="container">
-    <div class="row" style="height: 500px;background-color: #2aabd2;">
+    <div class="row" style="height: 500px;background-color: #fff; overflow: auto; margin-bottom: 5px; margin-top: 5px;">
         <div class="col-md-12" >
             <div class="col-md-12">
                 <table class="table table-hover table-striped table-bordered" data-toggle="table">
@@ -55,7 +55,7 @@
 
 <script>
     $(function () {
-         var tbody1=$("#tbody1");
+
          $.get("${pageContext.request.contextPath}/epidemicDate/ajax/getLastData",{},function (resp) {
             if(resp.code<0){
                 alert(resp.msg);
@@ -67,7 +67,36 @@
 
     });
 
-    function fillDataToTable(data) {
+    function fillDataToTable(epidemices) {
+        var tbody1=$("#tbody1");
+        tbody1.empty();
+        $.each(epidemices,function (index,epidemic) {
+          var tr=$("<tr>");
+          var td=$("<td>");
+          td.text(epidemic.provinceName);
+          tr.append(td);
 
+          td=$("<td>")
+          td.html(""+epidemic.affirmedTotal+"<span class='small'>"+epidemic.affirmed+"</span>");
+          tr.append(td);
+
+          td=$("<td>")
+          td.html(""+epidemic.suspectedTotal+"<span class='small'>"+epidemic.suspected+"</span>");
+          tr.append(td);
+
+            td=$("<td>")
+            td.html(""+epidemic.isolatedTotal+"<span class='small'>"+epidemic.isolated+"</span>");
+            tr.append(td);
+
+            td=$("<td>")
+            td.html(""+epidemic.curedTotal+"<span class='small'>"+epidemic.cured+"</span>");
+            tr.append(td);
+
+            td=$("<td>")
+            td.html(""+epidemic.deadTotal+"<span class='small'>"+epidemic.dead+"</span>");
+            tr.append(td);
+
+            tbody1.append(tr);
+        })
     }
 </script>
